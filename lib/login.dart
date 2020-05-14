@@ -13,6 +13,7 @@ class LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final emailField = TextFormField(
@@ -58,34 +59,35 @@ class LoginState extends State<Login> {
             borderRadius: BorderRadius.circular(32.0)),
       ),
     );
-    
-     final loginButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: ColorConstants.secondaryColor,
-      child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          if (_formKey.currentState.validate()) {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Processing date'),
+
+    final loginButton = Material(
+        elevation: 5.0,
+        borderRadius: BorderRadius.circular(30.0),
+        color: ColorConstants.secondaryColor,
+        child: Builder(builder: (context) {
+          return MaterialButton(
+            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Processing data'),
+                  ),
+                );
+              }
+              // print(emailController.text);
+              // print(passwordController.text);
+            },
+            child: Text(
+              "Login",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: ColorConstants.primaryColor,
               ),
-            );
-          }
-          // print(emailController.text);
-          // print(passwordController.text);
-        },
-        child: Text(
-          "Login",
-          textAlign: TextAlign.center,
-        ),
-        textColor: ColorConstants.primaryColor,
-      ),
-    );
-    
-    
-  
+            ),
+          );
+        }));
+
     return Scaffold(
       backgroundColor: ColorConstants.primaryColor,
       appBar: AppBar(
