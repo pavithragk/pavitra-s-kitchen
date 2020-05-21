@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pavitras_kitchen/utils/colors.dart';
+import 'package:validators/validators.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  bool obSecureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,15 @@ class LoginState extends State<Login> {
         if (value.isEmpty) {
           return 'Please enter your email';
         }
-        return null;
+       var text = (!isAlpha(value.toString()))
+           ? "Enter a valid email"
+           : null;
+        return text;
       },
       controller: emailController,
       decoration: InputDecoration(
+        labelText: 'name',
+        labelStyle: TextStyle(color:ColorConstants.secondaryColor,fontSize: 20.0),
         fillColor: ColorConstants.primaryColor,
         filled: true,
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -39,14 +46,29 @@ class LoginState extends State<Login> {
       ),
     );
     final passwordField = TextFormField(
+      obscureText: obSecureText,
       validator: (value) {
         if (value.isEmpty) {
           return 'enter your password';
         }
-        return null;
+        var text = (!isAlphanumeric(value.toString()))
+            ? "enter a valid passowrd"
+            : null;
+        return text;
       },
       controller: passwordController,
       decoration: InputDecoration(
+        suffixIcon: Padding(
+        padding: const EdgeInsetsDirectional.only(end: 12.0),
+        child: IconButton(
+          icon: (Icon(Icons.lock)), onPressed: (){
+            setState(() {
+              obSecureText =!obSecureText;
+            });
+          })
+        ),
+        labelText: 'password',
+        labelStyle: TextStyle(color:ColorConstants.secondaryColor,fontSize: 20.0),
         fillColor: ColorConstants.primaryColor,
         filled: true,
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -86,7 +108,8 @@ class LoginState extends State<Login> {
               ),
             ),
           );
-        }));
+        })
+        );
 
     return Scaffold(
       backgroundColor: ColorConstants.primaryColor,
@@ -96,60 +119,57 @@ class LoginState extends State<Login> {
             style: TextStyle(color: ColorConstants.secondaryColor)),
       ),
       body: Builder(
-        builder: (context) {
-          return Form(
-            key: _formKey,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/image4.jpeg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+      builder: (context) {
+        return Form(
+          key: _formKey,
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+             image: DecorationImage(
+            image: AssetImage('assets/images/image2.jpg'),
+            fit: BoxFit.cover,
+            ),
+            ),
+            child: Column(
+              children: <Widget>[
+                Expanded(child: ListView(children: <Widget>[
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 100.0, left: 50.0,
+                    right: 50.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text('Login Here',
+                         style: TextStyle(color:ColorConstants.primaryColor, fontSize: 20.0),),
+                        SizedBox(
+                    height: 25.0),
+                        Column(
+                        children: <Widget>[
+                        emailField,
+                        SizedBox(
+                    height: 25.0),
+                    passwordField,
+                    SizedBox(
+                     height: 25.0),
+                     loginButton,
+                      ],
+                    ),
+                      ],
                     ),
                   ),
-                  Positioned(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 50.0, right: 50.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 50.0),
-                            child: Text(
-                              'Login here',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 30.0,
-                              ),
-                            ),
-                          ),
-                          emailField,
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          passwordField,
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          loginButton,
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                
+                ),
+                ]
+                )
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        );
+      },
       ),
+     
     );
   }
 }
