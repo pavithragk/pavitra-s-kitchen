@@ -19,7 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   
+  cloud_firestore:
+  firebase_auth: ^0.16.1
   
   email_validator:
   validators: ^2.0.0+1  
