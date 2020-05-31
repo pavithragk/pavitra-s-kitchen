@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:124349119468:ios:b073ce4bcc451cb07cdec9</string>
+	<string>1:124349119468:ios:044a0ef4d1e689047cdec9</string>
 	<key>DATABASE_URL</key>
 	<string>https://kitchen-app-6e6c3.firebaseio.com</string>
 </dict>
