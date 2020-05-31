@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pavitras_kitchen/category.dart';
 import 'package:pavitras_kitchen/constants.dart';
+import 'package:pavitras_kitchen/details.dart';
 import 'package:pavitras_kitchen/profile.dart';
 import 'package:pavitras_kitchen/search.dart';
 import 'package:pavitras_kitchen/utils/colors.dart';
@@ -29,22 +30,62 @@ class HomeScreenState extends State<HomeScreen>
       body: Container(
           child: ListView(
             children: <Widget>[
+              GestureDetector(child:
               Container(
                 child: Image.asset('assets/images/image2.jpg'),
               ),
+              onTap: (){
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => DetailScreen()),
+               );
+              },
+              ),
+              GestureDetector(child:
               Container(
                 child: Image.asset('assets/images/image6.jpg',
                 fit: BoxFit.cover,
                 ),
               ),
+              onTap: (){
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => DetailScreen()),
+               );
+              },
+              ),
+              GestureDetector(child:
               Container(
                 child: Image.asset('assets/images/image2.jpg'),
               ),
+              onTap: (){
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => DetailScreen()),
+               );
+              },
+              ),
+              GestureDetector(child:
               Container(
                 child: Image.asset('assets/images/image5.jpg'),
               ),
+              onTap: (){
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => DetailScreen()),
+               );
+              },
+              ),
+              GestureDetector(child:
               Container(
                 child: Image.asset('assets/images/image6.jpg'),
+              ),
+              onTap: (){
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => DetailScreen()),
+               );
+              },
               ),
             ],
           ),
@@ -56,17 +97,26 @@ class HomeScreenState extends State<HomeScreen>
             BottomNavigationBarItem(
               icon: IconButton(icon: Icon(Icons.search, color: ColorConstants.secondaryColor,), 
               onPressed: (){
-                 Navigator.pushNamed(context, searchRoute, arguments: 'search');
+                Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => SearchScreen()),
+               );
               }),
             title: Text('search')),
             BottomNavigationBarItem(icon: IconButton(icon: Icon(Icons.category, color: ColorConstants.secondaryColor,), 
               onPressed: (){
-                Navigator.pushNamed(context, categoryRoute);
+               Navigator.push (
+              context,
+               MaterialPageRoute(builder: (context) => CategoryScreen()),
+                );
               }),
             title: Text('category')),
             BottomNavigationBarItem(icon: IconButton(icon: Icon(Icons.account_box, color: ColorConstants.secondaryColor,), 
               onPressed: (){
-                 Navigator.pushNamed(context, profileRoute);
+                 Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
               }),
             title: Text('Profile')),
           ],

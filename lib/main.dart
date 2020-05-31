@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
       initialRoute: homeRoute,
       
       // home:WelcomeScreen(),
-        // home: Login(),
-        //  home: SignUp()
-             home: HomeScreen(),
+        //  home: Login(),
+          // home: SignUp()
+              home: HomeScreen(),
         // home: ProfileScreen(),
         // home: Category(),
       // home: SearchScreen(),
